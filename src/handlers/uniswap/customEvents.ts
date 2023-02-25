@@ -3,7 +3,7 @@ import { BaseEventHandler, ContractDetail, EventNameWithHandler, NotificationDet
 import {LiquidityMintEventData, SwapEventData} from "./events";
 import {BigNumber} from "@ethersproject/bignumber";
 
-export class UniswapV3 extends BaseEventHandler {
+export class UniswapV3EventHandler extends BaseEventHandler {
 
     formatUSDCValue(value: BigNumber): string {
         const decimals = 6;
@@ -24,13 +24,13 @@ export class UniswapV3 extends BaseEventHandler {
                         {
                             address: eventData.sender, // Wallet address to be notified
                             title: 'Liquidity Increased for your position', // Short title of the event
-                            message: `The liquidity was minted by the amount ${this.formatUSDCValue(eventData.amount)}`,
+                            message: `The liquidity was minted by the amount ${this.formatUSDCValue(BigNumber.from(eventData.amount))}`,
                             options: {}
                         },
                         {
                             address: eventData.owner, // Wallet address to be notified
                             title: 'Liquidity Increased for your owned position', // Short title of the event
-                            message: `The liquidity was minted by ${eventData.sender} at the amount ${this.formatUSDCValue(eventData.amount)}`,
+                            message: `The liquidity was minted by ${eventData.sender} at the amount ${this.formatUSDCValue(BigNumber.from(eventData.amount))}`,
                             options: {}
                         },
                     ]
@@ -50,8 +50,8 @@ export class UniswapV3 extends BaseEventHandler {
                         },
                         {
                             address: eventData.recipient,
-                            title: 'Your swap triggered is complete',
-                            message: `The swap you triggered has been completed`,
+                            title: 'Swap is complete',
+                            message: `You have received tokens from a swap.`,
                             options: {}
                         }
                     ]
