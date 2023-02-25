@@ -5,17 +5,17 @@ import { Web3EventQueue } from './SQSClient';
 export class Web3EventEmitter extends EventEmitter {
     static startApp(eventListeners: BaseEventHandler[]) {
         const INSTANCE = new Web3EventEmitter(eventListeners);
-        // INSTANCE.emit(`POLYGON:0x2791bca1f2de4661ed88a30c99a7a9449aa84174:Transfer`,
-        //     {
-        //         chain: 'POLYGON',
-        //         contractAddress: '0x2791bca1f2de4661ed88a30c99a7a9449aa84174',
-        //         eventData: {
-        //             from: '0x1',
-        //             to: '0x2',
-        //             value: { type: 'BigNumber', hex: '0x01308de6' }
-        //         }
-        //     }
-        // );
+        INSTANCE.emit(`POLYGON:0x12345:uniswapDapp`,
+            {
+                chain: 'POLYGON',
+                contractAddress: '0x2791bca1f2de4661ed88a30c99a7a9449aa84174',
+                eventData: {
+                    from: '0x1',
+                    to: '0x2',
+                    value: { type: 'BigNumber', hex: '0x01308de6' }
+                }
+            }
+        );
         INSTANCE.listenToEventMesssage(new Web3EventQueue());
     }
 
