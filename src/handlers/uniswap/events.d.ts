@@ -24,3 +24,15 @@ export interface BurnEventData {
     amount0: number;
     amount1: number;
 }
+
+/// @notice Emitted when liquidity is minted for a given position
+/// @param sender The address that minted the liquidity
+/// @param owner The owner of the position and recipient of any minted liquidity
+/// @param amount The amount of liquidity minted to the position range
+/// @param amount0 How much token0 was required for the minted liquidity
+/// @param amount1 How much token1 was required for the minted liquidity
+export interface MintEventData {
+    sender: string;
+    owner: string;
+    amount: number;
+}
