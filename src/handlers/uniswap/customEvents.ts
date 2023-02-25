@@ -1,6 +1,6 @@
 import { CHAIN } from "../../shared/chains.enum";
 import { BaseEventHandler, ContractDetail, EventNameWithHandler, NotificationDetail, ParsedEventData } from "../../model/baseEventHandler";
-import {LiquidityMintEventData, SwapEventData} from "./events";
+import {BurnEventData, LiquidityMintEventData, SwapEventData} from "./events";
 import {BigNumber} from "@ethersproject/bignumber";
 
 export class UniswapV3EventHandler extends BaseEventHandler {
@@ -52,6 +52,21 @@ export class UniswapV3EventHandler extends BaseEventHandler {
                             address: eventData.recipient,
                             title: 'Swap is complete',
                             message: `You have received tokens from a swap.`,
+                            options: {}
+                        }
+                    ]
+                }
+            },
+            {
+                eventName: 'BurnEvent',
+                eventHandler: (parsedEventData: ParsedEventData): NotificationDetail[] => {
+                    const eventData = parsedEventData.eventData as BurnEventData;
+
+                    return [
+                        {
+                            address: eventData.owner,
+                            title: 'Removed from liquidity position',
+                            message: `Your liquidity position has been removed and a total of ${eventData.amount}`,
                             options: {}
                         }
                     ]

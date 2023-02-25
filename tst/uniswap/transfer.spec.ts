@@ -29,4 +29,14 @@ describe("Uniswap V3 Events", () => {
         expect(result[1].title).toBe('Swap is complete');
         expect(result[1].message).toBe('You have received tokens from a swap.');
     });
+
+    it("is parsing the right Burn event", () => {
+        const UniswapTransferEventHandler = new UniswapV3EventHandler();
+        const result =  UniswapTransferEventHandler.getEventsToRegister()[2].eventHandler({
+            chain: CHAIN.ETHEREUM, contractAddress: '0x111', eventName: 'BurnEvent', eventData: { owner: 'ABC', amount: 12345, amount0: 12345, amount1: 12345}
+        })
+        expect(result[0].address).toBe('ABC');
+        expect(result[0].title).toBe('Removed from liquidity position');
+        expect(result[0].message).toBe('Your liquidity position has been removed and a total of 12345');
+    });
 });
