@@ -1,10 +1,3 @@
-import {BigNumber} from "@ethersproject/bignumber";
-
-export interface LiquidityMintEventData {
-    sender: string;
-    owner: string;
-    amount: BigNumber;
-}
 
 /// @notice Emitted by the pool for any swaps between token0 and token1
 /// @param sender The address that initiated the swap call, and that received the callback
