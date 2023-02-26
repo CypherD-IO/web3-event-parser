@@ -21,8 +21,8 @@ export interface SwapEventData {
 export interface BurnEventData {
     owner: string;
     amount: number;
-    amount0: number;
-    amount1: number;
+    amount0: string;
+    amount1: string;
 }
 
 /// @notice Emitted when liquidity is minted for a given position
