@@ -5,71 +5,17 @@ import { Web3EventQueue } from './SQSClient';
 export class Web3EventEmitter extends EventEmitter {
     static startApp(eventListeners: BaseEventHandler[]) {
         const INSTANCE = new Web3EventEmitter(eventListeners);
-
-        console.log("------------------------SwapEventData 1----------------------")
-        INSTANCE.emit(`ETHEREUM:0x6c6bc977e13df9b0de53b251522280bb72383700:SwapEventData`,
-            {
-                chain: 'ETHEREUM',
-                contractAddress: '0x6c6bc977e13df9b0de53b251522280bb72383700',
-                eventData: {
-                    sender: '0x1',
-                    recipient: '0x1',
-                }
-            }
-        );
-
-        console.log("------------------------SwapEventData 2----------------------")
-        INSTANCE.emit(`ETHEREUM:0x6c6bc977e13df9b0de53b251522280bb72383700:SwapEventData`,
-            {
-                chain: 'ETHEREUM',
-                contractAddress: '0x6c6bc977e13df9b0de53b251522280bb72383700',
-                eventData: {
-                    sender: '0x1',
-                    recipient: '0x2',
-                }
-            }
-        );
-
-        console.log("------------------------BurnEvent 1----------------------")
-        INSTANCE.emit(`ETHEREUM:0x6c6bc977e13df9b0de53b251522280bb72383700:BurnEvent`,
-            {
-                chain: 'ETHEREUM',
-                contractAddress: '0x6c6bc977e13df9b0de53b251522280bb72383700',
-                eventData: {
-                    owner: '0x1',
-                    recipient: '0x2',
-                    amount: 198228786435629134280847,
-                    amount0: 109211677011624714043905211,
-                    amount1: 889540921386390000000000000,
-                }
-            }
-        );
-
-        console.log("------------------------MintEvent 1----------------------")
-        INSTANCE.emit(`ETHEREUM:0x6c6bc977e13df9b0de53b251522280bb72383700:MintEvent`,
-            {
-                chain: 'ETHEREUM',
-                contractAddress: '0x6c6bc977e13df9b0de53b251522280bb72383700',
-                eventData: {
-                    owner: '0x1',
-                    sender: '0x2',
-                    amount: 198228786435629134280847,
-                }
-            }
-        );
-
-        console.log("------------------------MintEvent 2----------------------")
-        INSTANCE.emit(`ETHEREUM:0x6c6bc977e13df9b0de53b251522280bb72383700:MintEvent`,
-            {
-                chain: 'ETHEREUM',
-                contractAddress: '0x6c6bc977e13df9b0de53b251522280bb72383700',
-                eventData: {
-                    owner: '0x1',
-                    sender: '0x1',
-                    amount: 198228786435629134280847,
-                }
-            }
-        );
+        // INSTANCE.emit(`POLYGON:0x2791bca1f2de4661ed88a30c99a7a9449aa84174:Transfer`,
+        //     {
+        //         chain: 'POLYGON',
+        //         contractAddress: '0x2791bca1f2de4661ed88a30c99a7a9449aa84174',
+        //         eventData: {
+        //             from: '0x1',
+        //             to: '0x2',
+        //             value: { type: 'BigNumber', hex: '0x01308de6' }
+        //         }
+        //     }
+        // );
         INSTANCE.listenToEventMesssage(new Web3EventQueue());
     }
 
