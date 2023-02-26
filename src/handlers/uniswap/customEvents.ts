@@ -1,8 +1,7 @@
 import { CHAIN } from "../../shared/chains.enum";
 import { BaseEventHandler, ContractDetail, EventNameWithHandler, NotificationDetail, ParsedEventData } from "../../model/baseEventHandler";
-import {BurnEventData, LiquidityMintEventData, MintEventData, SwapEventData} from "./events";
+import {BurnEventData, MintEventData, SwapEventData} from "./events";
 import {BigNumber} from "@ethersproject/bignumber";
-import {BN} from "bn.js";
 
 export class UniswapV3EventHandler extends BaseEventHandler {
 
@@ -13,37 +12,8 @@ export class UniswapV3EventHandler extends BaseEventHandler {
         return humanReadableValue.toString();
     }
 
-    formatUint128(value: number): string {
-        // const decimals = 39;
-        // const divisor = BigNumber.from(10).pow(decimals);
-        // const humanReadableValue = value.div(divisor);
-        return (value / 10^18).toString();
-    }
-
     getEventsToRegister(): EventNameWithHandler[] {
         return [
-            // {
-            //     eventName: 'IncreaseLiquidity',
-            //     eventHandler: (parsedEventData: ParsedEventData): NotificationDetail[] => {
-            //         const eventData = parsedEventData.eventData as LiquidityMintEventData;
-            //
-            //         // Can be returning multiple notification message. Or same message to multiple addresses
-            //         return [
-            //             {
-            //                 address: eventData.sender, // Wallet address to be notified
-            //                 title: 'Liquidity Increased for your position', // Short title of the event
-            //                 message: `The liquidity was minted by the amount ${this.formatUSDCValue(BigNumber.from(eventData.amount))}`,
-            //                 options: {}
-            //             },
-            //             {
-            //                 address: eventData.owner, // Wallet address to be notified
-            //                 title: 'Liquidity Increased for your owned position', // Short title of the event
-            //                 message: `The liquidity was minted by ${eventData.sender} at the amount ${this.formatUSDCValue(BigNumber.from(eventData.amount))}`,
-            //                 options: {}
-            //             },
-            //         ]
-            //     }
-            // },
             {
                 eventName: 'SwapEventData',
                 eventHandler: (parsedEventData: ParsedEventData): NotificationDetail[] => {
