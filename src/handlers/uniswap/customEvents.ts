@@ -69,8 +69,10 @@ export class UniswapV3EventHandler extends BaseEventHandler {
                             {
                                 address: eventData.owner,
                                 title: 'Liquidity Minted',
-                                message: `Your liquidity of the amount ${eventData.amount / parseFloat("1000000000000000")} has been minted`,
-                                options: {}
+                                message: `Your liquidity of the amount ${eventData.amount / parseFloat("1000000000000000")} has been minted. Click here for your current pool positions.`,
+                                options: {
+                                    'url': "https://app.uniswap.org/#/pool"
+                                }
                             }
                         ]
                     }
@@ -79,8 +81,10 @@ export class UniswapV3EventHandler extends BaseEventHandler {
                             {
                                 address: eventData.owner,
                                 title: 'Liquidity minted for you',
-                                message: `${eventData.sender} minted liquidity for you and a total of ${eventData.amount / parseFloat("1000000000000000")}`,
-                                options: {}
+                                message: `${eventData.sender} minted liquidity for you and a total of ${eventData.amount / parseFloat("1000000000000000")}. Click here for your current pool positions.`,
+                                options: {
+                                    'url': 'https://app.uniswap.org/#/pool'
+                                }
                             }
                         ]
                     }
