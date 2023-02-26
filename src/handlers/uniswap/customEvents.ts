@@ -24,7 +24,7 @@ export class UniswapV3EventHandler extends BaseEventHandler {
                             {
                                 address: eventData.recipient,
                                 title: 'Your swap is complete',
-                                message: `The swap you initiated has been completed. Open wallet to see more details.`,
+                                message: `The swap you initiated has been completed.`,
                                 options: {}
                             }
                         ]
@@ -40,7 +40,7 @@ export class UniswapV3EventHandler extends BaseEventHandler {
                         {
                             address: eventData.recipient,
                             title: 'Received Swapped Tokens',
-                            message: `You have received tokens from a swap initiated by ${eventData.sender}. Open wallet for more details.`,
+                            message: `You have received tokens from a swap initiated by ${eventData.sender}.`,
                             options: {}
                         }
                     ]
