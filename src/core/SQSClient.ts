@@ -7,7 +7,6 @@ export class Web3EventQueue {
     sqs: SQSClient;
     constructor() {
         this.sqs = new SQSClient({
-            endpoint: "http://localhost:9324",
             region: process.env.AWS_REGION,
         });
         this.listenerQueueUrl = process.env.WEB3_EVENT_QUEUE!;
