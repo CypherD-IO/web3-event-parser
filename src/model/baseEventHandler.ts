@@ -55,5 +55,6 @@ export interface ParsedEventData {
     chain: CHAIN;
     contractAddress: string;
     eventName: string; 
+    txnHash?: string;
     eventData: any;
 }
