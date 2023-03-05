@@ -5,5 +5,6 @@ export enum CHAIN {
   FANTOM = 'FANTOM',
   ARBITRUM = 'ARBITRUM',
   OPTIMISM = 'OPTIMISM',
-  BSC = 'BSC'
+  BSC = 'BSC',
+  SEPOLIA = 'SEPOLIA',
 }

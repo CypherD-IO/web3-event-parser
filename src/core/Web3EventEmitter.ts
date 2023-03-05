@@ -16,11 +16,14 @@ export class Web3EventEmitter extends EventEmitter {
         //         }
         //     }
         // );
-        INSTANCE.listenToEventMesssage(new Web3EventQueue());
+        INSTANCE.start();
     }
 
-    constructor(eventListeners: BaseEventHandler[]) {
+    private pollInterval: number;
+
+    constructor(eventListeners: BaseEventHandler[], pollInterval: number = 10000) {
         super();
+        this.pollInterval = pollInterval;
         eventListeners.forEach(eventListener => {
             eventListener.registerOnEvents(this);
         })
@@ -38,7 +41,15 @@ export class Web3EventEmitter extends EventEmitter {
                     parsedEventData
                 );
             })
-        }, 10000); // Poll every 10 seconds (adjust as needed)
+        }, this.pollInterval); // Poll every 10 seconds (adjust as needed)
+    }
+
+    addEventListener(eventListener: BaseEventHandler) {
+        eventListener.registerOnEvents(this);
+    }
+
+    start() {
+        this.listenToEventMesssage(new Web3EventQueue());
     }
 }
 
