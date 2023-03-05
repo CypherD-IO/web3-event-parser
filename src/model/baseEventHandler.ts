@@ -23,6 +23,16 @@ export abstract class BaseEventHandler {
         // eslint-disable-next-line no-console
         console.log(notificationDetails);
         // Publish to SNS here.
+        fetch(process.env.UNSEEN_RECEIVER, {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(notificationDetails)
+        })
+        .then((response) => response.json())
+        .then((json) => console.log(json))
+        .catch(console.error);
     }
     private getEventKey(contractDetail: ContractDetail, eventName: string): string {
         // eslint-disable-next-line no-console
